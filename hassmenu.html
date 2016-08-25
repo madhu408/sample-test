@@ -1,0 +1,148 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<style>
+body {
+    font: normal 14px Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;    
+}
+.dropMenu {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    zoom: 1;
+ *display: inline;
+}
+.dropMenu .trigger {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    top: 1px;
+    z-index: 3;
+    color: #1279A2;
+    min-width: 230px;
+    padding: 4px 7px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.dropMenu .panel {
+    border: solid 1px #868686;
+    position: absolute;
+    left: 0;
+    min-width: 242px;
+    z-index: 2;
+    display: none;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+.dropMenu .panel .list {
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.dropMenu .panel .list li {
+    clear: both;
+    margin: 1px;
+    padding: 1px; /* compensate for hover border */
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    width: 120px;
+}
+.dropMenu .panel .list li:hover {
+    border: solid 1px #d2b47a;
+    background: #ffecb5;
+    padding: 0;
+}
+.dropMenu .panel .list li.separator,
+.dropMenu .panel .list li:hover.separator {
+    width: 232px;
+    border: 0 none;
+    border-bottom: solid 1px #999;
+    height: 1px;
+    margin: 0 5px 2px;
+    padding: 0;
+    background: none;
+    float: left; /* this is only here for IE7 */
+}
+.dropMenu .panel .list a {
+    display: block;
+    text-decoration: none;
+    padding: 2px 4px;
+    color: #1279A2;
+}
+/* Open and Hover styles */
+    
+.dropMenu.open {
+    z-index: 999;
+}
+.dropMenu.open .trigger {
+    z-index: 1001;
+    -webkit-box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 -1px 2px 0 rgba(0,0,0,0.3);
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    background: #78A9FF;
+    color: #fff;
+}
+.dropMenu .trigger:hover,
+.dropMenu.open .trigger {
+    border: solid 1px #868686;
+    padding: 3px 6px;
+}
+.dropMenu.open .panel {
+    display: block;
+    z-index: 1000;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    
+    initDropDowns($("div.dropMenu"));
+
+});
+function initDropDowns(allMenus){
+       allMenus.children(".trigger").on("click",function(){
+       var thisTrigger = jQuery(this),
+       thisMenu = thisTrigger.parent(),
+       thisPanel = thisTrigger.next();
+     
+   if(thisMenu.hasClass("open")){
+    thisMenu.removeClass("open");
+	
+   }else{
+   allMenus.removeClass("open");
+    thisMenu.addClass("open");
+	
+   }
+   return false;
+ 
+ 
+ 
+ 
+ });
+
+}
+
+
+
+</script>
+
+</head>
+<body>
+<div class="dropMenu">
+    <span class="trigger">Options</span>
+    <div class="panel">
+        <ul class="list">
+            <li><a href="">List Item 1</a></li>
+            <li><a href="">List Item 2</a></li>
+            <li><a href="">List Item 3</a></li>
+            <li class="separator"></li>
+            <li><a href="">List Item 4</a></li>
+            <li><a href="">List Item 5</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
